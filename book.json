@@ -15,6 +15,7 @@
         "-highlight",
         "-lunr", 
         "-search", 
+        "theme-comscore",
         "search-pro",
         "splitter"
     ],
