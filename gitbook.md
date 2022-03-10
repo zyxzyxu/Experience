@@ -1,2 +1,1 @@
-# 1.GitBook
-- https://wangzhebufangqi.github.io/auto-export-gitbook/
+[GitBook](https://wangzhebufangqi.github.io/auto-export-gitbook/ "开启笔记")
