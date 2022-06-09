@@ -1,4 +1,4 @@
-### Hive性能调优的方式
+Hive性能调优的方式
 - SQL语句优化
 	1. union all
 		```sql
