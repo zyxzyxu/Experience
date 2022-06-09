@@ -51,7 +51,7 @@
 	- ORC优化是对RCFile的一种优化，它提供了一种高效的方式来存储Hive数据，同时也能够提高Hive的读取、写入和处理数据的性能，能够兼容多种计算引擎。事实上，在实际的生产环境中，ORC已经成为了Hive在数据存储上的主流选择之一
 
 | 数据格式 | CPU时间 | 用户等待耗时 |
-| ：---： | ：---： | ：---： |
+| :---: | :---: | :---: |
 | TextFile | 33分 | 171秒 |
 | SequenceFile | 38分 | 162秒 |
 | Parquet | 2分22秒 | 50秒 |
@@ -74,7 +74,7 @@
 		
 		load data local inpath '/export/list' overwrite into table test02 -- 导入文件夹
 		```
-		使用load data 方式可以导入文件或文件夹，当导入一个文件时，hive表就有一个文件，当导入文件夹时，hive表的文件数量为文件夹下所有文件的数量
+		使用load data方式可以导入文件或文件夹，当导入一个文件时，hive表就有一个文件，当导入文件夹时，hive表的文件数量为文件夹下所有文件的数量
 		3. 通过查询方式加载数据
 		```sql
 		insert overwrite table test02 select id，name from test03；
