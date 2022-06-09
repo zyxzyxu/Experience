@@ -131,7 +131,7 @@
 		> 2、使用concatenate命令合并小文件时不能指定合并后的文件数量，但可以多次执行该命令。 
 		> 3、当多次使用concatenate后文件数量不在变化，这个跟参数 mapreduce.input.fileinputformat.split.minsize=256mb 的设置有关，可设定每个文件的最小size。
 		2. 调整参数减少Map数量
-		- 设置map输入合并小文件的相关参数：
+			- 设置map输入合并小文件的相关参数：
 		```sql
 		#执行Map前进行小文件合并
 		#CombineHiveInputFormat底层是 Hadoop的 CombineFileInputFormat 方法
@@ -147,7 +147,7 @@
 		#一个交换机下split的至少的大小(这个值决定了多个交换机上的文件是否需要合并)
 		set mapred.min.split.size.per.rack=100000000;  -- 100M
 		```
-		- 设置map输出和reduce输出进行合并的相关参数：
+			- 设置map输出和reduce输出进行合并的相关参数：
 		```sql
 		#设置map端输出进行合并，默认为true
 		set hive.merge.mapfiles = true;
@@ -161,7 +161,7 @@
 		#当输出文件的平均大小小于该值时，启动一个独立的MapReduce任务进行文件merge
 		set hive.merge.smallfiles.avgsize=16000000;   -- 16M 
 		```
-		- 启用压缩
+			- 启用压缩
 		```sql
 		# hive的查询结果输出是否进行压缩
 		set hive.exec.compress.output=true;
