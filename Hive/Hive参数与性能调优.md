@@ -12,13 +12,13 @@
 		insert into table test01 partition(tp)
 		select age，min(birthday) birthday，'min' tp
 		from user
-		group by age；
+		group by age;
 		```
 	- union all 前后的两个语句都是对同一张表按照age进行分组，然后分别取最大、最小值，对同一张表相同的字段进行两次分组，可以进行优化，使用语法：from ... insert into ... 使用一张表，可以进行多次插入操作：
 		```sql
 		--开启动态分区 
 		set hive.exec.dynamic.partition=true； 
-		set hive.exec.dynamic.partition.mode=nonstrict； 
+		set hive.exec.dynamic.partition.mode=nonstrict;
 		
 		from user 
 		
@@ -28,13 +28,13 @@
 		
 		insert into table stu partition(tp) 
 		select age，min(birthday) birthday，'min' tp 
-		group by age；
+		group by age;
 		```
 	2. distinct
 		```sql
-		select count(1) from (select age from test01 group by age) a；
+		select count(1) from (select age from test01 group by age) a;
 		
-		select count(distinct age) from test01；
+		select count(distinct age) from test01;
 		```
 	- 在数据量特别大的情况下使用第一种方式可以有效避免Reduce端的数据倾斜
 	- **就当前的业务和环境下使用distinct一定会比上面那种子查询的方式效率高**，原因如下：
@@ -65,19 +65,20 @@
 	- 小文件产生原因
 		1. 直接向表中插入数据
 		```sql
-		insert into table test02 values (1，'a')，(2，'b')；
+		insert into table test02 values (1，'a')，(2，'b');
 		```
 		多次插入少量数据就会出现多个小文件，生产环境基本没有使用
 		2. 通过load方式加载数据
 		```sql
-		load data local inpath '/export/list.csv' overwrite into table test02 -- 导入文件
-		
-		load data local inpath '/export/list' overwrite into table test02 -- 导入文件夹
+		#导入文件
+		load data local inpath '/export/list.csv' overwrite into table test02
+		#导入文件夹
+		load data local inpath '/export/list' overwrite into table test02
 		```
 		使用load data方式可以导入文件或文件夹，当导入一个文件时，hive表就有一个文件，当导入文件夹时，hive表的文件数量为文件夹下所有文件的数量
 		3. 通过查询方式加载数据
 		```sql
-		insert overwrite table test02 select id，name from test03；
+		insert overwrite table test02 select id，name from test03;
 		```
 		这种方式是生产环境中常用的，也是最容易产生小文件的方式
 
