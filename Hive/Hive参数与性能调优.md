@@ -19,13 +19,13 @@
 		--开启动态分区 
 		set hive.exec.dynamic.partition=true; 
 		set hive.exec.dynamic.partition.mode=nonstrict; 
-
+		
 		from user 
-
+		
 		insert into table test01 partition(tp) 
 		select age,max(birthday) birthday,'max' tp 
 		group by age
-
+		
 		insert into table stu partition(tp) 
 		select age,min(birthday) birthday,'min' tp 
 		group by age;
@@ -33,7 +33,7 @@
 	2. distinct
 		```sql
 		select count(1) from (select age from test01 group by age) a;
-
+		
 		select count(distinct age) from test01;
 		```
 	- 在数据量特别大的情况下使用第一种方式可以有效避免Reduce端的数据倾斜
@@ -50,14 +50,29 @@
 	- *Parquet*是一种列式数据存储格式，可以兼容多种计算引擎，如MapRedcue和Spark等，对多层嵌套的数据结构提供了良好的性能支持，是目前Hive生产环境中数据存储的主流选择之一
 	- ORC优化是对RCFile的一种优化，它提供了一种高效的方式来存储Hive数据，同时也能够提高Hive的读取、写入和处理数据的性能，能够兼容多种计算引擎。事实上，在实际的生产环境中，ORC已经成为了Hive在数据存储上的主流选择之一
 
-	| 数据格式 | CPU时间 | 用户等待耗时 |
-	| --- | --- | --- |
-	| TextFile | 33分 | 171秒 |
-	| SequenceFile | 38分 | 162秒 |
-	| Parquet | 2分22秒 | 50秒 |
-	| ORC | 1分52秒 | 56秒 |
+| 数据格式 | CPU时间 | 用户等待耗时 |
+| --- | --- | --- |
+| TextFile | 33分 | 171秒 |
+| SequenceFile | 38分 | 162秒 |
+| Parquet | 2分22秒 | 50秒 |
+| ORC | 1分52秒 | 56秒 |
 
-	>**CPU时间**：表示运行程序所占用服务器CPU资源的时间
-	>**用户等待耗时**：记录的是用户从提交作业到返回结果期间用户等待的所有时间
+>**CPU时间**：表示运行程序所占用服务器CPU资源的时间
+**用户等待耗时**：记录的是用户从提交作业到返回结果期间用户等待的所有时间
+
 - 小文件过多优化
 	>小文件如果过多，对 hive 来说，在进行查询时，每个小文件都会当成一个块，启动一个Map任务来完成，而一个Map任务启动和初始化的时间远远大于逻辑处理的时间，就会造成很大的资源浪费。而且，同时可执行的Map数量是受限的
+	- 小文件产生原因
+		1. 直接向表中插入数据
+		```sql
+		insert into table test02 values (1,'a'),(2,'b');
+		```
+		多次插入少量数据就会出现多个小文件，生产环境基本没有使用
+		2. 通过load方式加载数据
+		```sql
+		load data local inpath '/export/list.csv' overwrite into table test02 -- 导入文件
+
+		load data local inpath '/export/list' overwrite into table test02 -- 导入文件夹
+		```
+		使用load data 方式可以导入文件或文件夹，当导入一个文件时，hive表就有一个文件，当导入文件夹时，hive表的文件数量为文件夹下所有文件的数量
+		3. 通过
