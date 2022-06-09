@@ -81,12 +81,9 @@
 		insert overwrite table test02 select id，name from test03;
 		```
 		这种方式是生产环境中常用的，也是最容易产生小文件的方式
-
 		insert 导入数据时会启动 MR 任务，MR 中 reduce 有多少个就输出多少个文件，所以，文件数量 = ReduceTask数量* 分区数
-
 		也有很多简单任务没有reduce，只有map阶段，则文件数量 = MapTask数量* 分区数
 		每执行一次 insert 时hive中至少产生一个文件，因为 insert 导入时至少会有一个MapTask。
-
 		像有的业务需要每10分钟就要把数据同步到 hive 中，这样产生的文件就会很多。
 
 	- 小文件过多产生的影响
