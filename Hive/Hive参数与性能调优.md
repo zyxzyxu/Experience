@@ -38,7 +38,7 @@
 		```
 	- 在数据量特别大的情况下使用第一种方式可以有效避免Reduce端的数据倾斜
 	- **就当前的业务和环境下使用distinct一定会比上面那种子查询的方式效率高**，原因如下：
-		1. 在当前案例下，去重字段为年龄，年龄的枚举值非常有限，age的最大枚举值才是100，如果转化成MapReduce来解释的话，在Map阶段，每个Map会对age去重。由于age枚举值有限，因而每个Map得到的age也有限，最终得到reduce的数据量也就是map数量* age枚举值的个数
+		1. 在当前案例下，去重字段为年龄，年龄的枚举值非常有限，age的最大枚举值才是100，如果转化成MapReduce来解释的话，在Map阶段，每个Map会对age去重。由于age枚举值有限，因而每个Map得到的age也有限，最终得到reduce的数据量也就是map数量×age枚举值的个数
 		2. 最新的Hive 3.0中新增了 count(distinct)优化，通过配置hive.optimize.countdistinct，即使真的出现数据倾斜也可以自动优化，自动改变SQL执行的逻辑
 		3. 第二种方式比第一种简洁明了，如果没有特殊问题，简洁为优
 
@@ -83,8 +83,8 @@
 		insert overwrite table test02 select id，name from test03;
 		```
 		这种方式是生产环境中常用的，也是最容易产生小文件的方式
-		insert 导入数据时会启动 MR 任务，MR 中 reduce 有多少个就输出多少个文件，所以，文件数量 = ReduceTask数量* 分区数
-		也有很多简单任务没有reduce，只有map阶段，则文件数量 = MapTask数量* 分区数
+		insert 导入数据时会启动 MR 任务，MR 中 reduce 有多少个就输出多少个文件，所以，文件数量 = ReduceTask数量×分区数
+		也有很多简单任务没有reduce，只有map阶段，则文件数量 = MapTask数量×分区数
 		每执行一次 insert 时hive中至少产生一个文件，因为 insert 导入时至少会有一个MapTask。
 		像有的业务需要每10分钟就要把数据同步到 hive 中，这样产生的文件就会很多。
 
@@ -131,7 +131,7 @@
 		> 2、使用concatenate命令合并小文件时不能指定合并后的文件数量，但可以多次执行该命令。 
 		> 3、当多次使用concatenate后文件数量不在变化，这个跟参数 mapreduce.input.fileinputformat.split.minsize=256mb 的设置有关，可设定每个文件的最小size。
 		2. 调整参数减少Map数量
-			- 设置map输入合并小文件的相关参数：
+		设置map输入合并小文件的相关参数：
 		```sql
 		#执行Map前进行小文件合并
 		#CombineHiveInputFormat底层是 Hadoop的 CombineFileInputFormat 方法
@@ -147,7 +147,7 @@
 		#一个交换机下split的至少的大小(这个值决定了多个交换机上的文件是否需要合并)
 		set mapred.min.split.size.per.rack=100000000;  -- 100M
 		```
-			- 设置map输出和reduce输出进行合并的相关参数：
+		设置map输出和reduce输出进行合并的相关参数：
 		```sql
 		#设置map端输出进行合并，默认为true
 		set hive.merge.mapfiles = true;
@@ -161,7 +161,7 @@
 		#当输出文件的平均大小小于该值时，启动一个独立的MapReduce任务进行文件merge
 		set hive.merge.smallfiles.avgsize=16000000;   -- 16M 
 		```
-			- 启用压缩
+		启用压缩：
 		```sql
 		# hive的查询结果输出是否进行压缩
 		set hive.exec.compress.output=true;
