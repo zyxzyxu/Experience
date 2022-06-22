@@ -1,9 +1,9 @@
 # HBase进阶
 - Master架构
-&ensp;Master
-&ensp;主要进程，具体实现类为HMaster，通常部署在namenode上
-&ensp;通过zookeeper管理分布在各个服务器上的 regionServer
-&ensp;Master服务端
+	Master<br/>
+	主要进程，具体实现类为HMaster，通常部署在namenode上<br/>
+	通过zookeeper管理分布在各个服务器上的 regionServer<br/>
+	Master服务端<br/>
 	1. 负载均衡器
 		通过读取meta表了解Regin的分配，通过连接zk了解RS的启动情况。5分钟调控一次分配平衡
 	2. 元数据表管理器 (hdfs文件系统：元数据表->/hbase/data/hbase/meta)
@@ -12,23 +12,23 @@
 		本质写数据到hdfs，32M文件或者1H滚动当操作执行到meta表之后删除WAL
 
 - Region Server架构
-&ensp;Region Server
-&ensp;主要进程，具体实现类为HRegionServer，通常部署在dataNode上。
-&ensp;Region Server服务端
+	Region Server
+	主要进程，具体实现类为HRegionServer，通常部署在dataNode上。
+	Region Server服务端
 	1. WAL
-&ensp;&ensp;hdfs文件系统的WAL预写日志
+		hdfs文件系统的WAL预写日志
 	2. Block cache 读缓存（数量1）
-&ensp;&ensp;当Client调用get请求时，会从hdfs文件系统存储的Table表中读取每个RS管理的Region信息，存一份到内存中方便下次读取
+		当Client调用get请求时，会从hdfs文件系统存储的Table表中读取每个RS管理的Region信息，存一份到内存中方便下次读取
 	3. Mem Store 写缓存（数量 = store个数）
-&ensp;&ensp;当Client调用put请求时，会先写入内存中的Mem Store中，攒的过程中不断按照Row_key进行排序，攒够一批写入hdfs管理的table表中
-&ensp;除了主要的组件，还会启动多个线程监控一些必要的服务：
-&ensp;Region拆分
-&ensp;Region合并
-&ensp;MemStore刷写
-&ensp;WAL预写日志滚动
+		当Client调用put请求时，会先写入内存中的Mem Store中，攒的过程中不断按照Row_key进行排序，攒够一批写入hdfs管理的table表中
+	除了主要的组件，还会启动多个线程监控一些必要的服务：
+	Region拆分
+	Region合并
+	MemStore刷写
+	WAL预写日志滚动
 
 - 写流程
-&ensp;HBase写流程
+	HBase写流程
 	1. Client先问zookeeper请求创建连接,获取meta表位于哪个Region Server。
 	2. 访问对应的Region Server读取meta表，查询出目标数据位于哪个Region Server中的哪个Region中。并将该table的region信息以及meta表的位置信息缓存在客户端的MetaCache，方便下次访问。
 	3. 与目标RegionServer进行通讯；
@@ -38,15 +38,15 @@
 	7. 等达到Mem Store的刷写时机后，将数据刷写到HFile。
 
 - MemStore Flush
-&ensp;MemStore刷写时机：
+	MemStore刷写时机：
 	1. 当某个memstroe的大小达到了 hbase.hregion.memstore.flush.size（默认值128M），其所在region的所有memstore都会刷写。
-&ensp;当memstore的大小达到了hbase.hregion.memstore.flush.size（默认值128M）* hbase.hregion.memstore.block.multiplier（默认值4）时，会阻止继续往该memstore写数据。
+	当memstore的大小达到了hbase.hregion.memstore.flush.size（默认值128M）* hbase.hregion.memstore.block.multiplier（默认值4）时，会阻止继续往该memstore写数据。
 	2. 当region server中memstore的总大小达到java_heapsize* hbase.regionserver.global.memstore.size（默认值0.4）* hbase.regionserver.global.memstore.size.lower.limit（默认值0.95），region会按照其所有memstore的大小顺序（由大到小）依次进行刷写。直到region server中所有memstore的总大小减小到上述值以下。当region server中memstore的总大小达到java_heapsize* hbase.regionserver.global.memstore.size（默认值0.4）时，会阻止继续往所有的memstore写数据。
 	3. 到达自动刷写的时间，也会触发memstore flush。自动刷新的时间间隔由该属性进行配置hbase.regionserver.optionalcacheflushinterval（默认1小时）。
 	4. 当WAL文件的数量超过hbase.regionserver.max.logs，region会按照时间顺序依次进行刷写，直到WAL文件数量减小到hbase.regionserver.max.log以下（该属性名已经废弃，现无需手动设置，最大值为32）。
 
 - 读流程
-&ensp;HBase读流程
+	HBase读流程
 	1. Client先访问zookeeper，获取hbase:meta表位于哪个Region Server。
 	2. 访问对应的Region Server，获取hbase:meta表,查询出目标数据位于哪个Region Server中的哪个Region中。并将该table的region信息以及meta表的位置信息缓存在客户端的meta cache，方便下次访问。
 	3. 与目标Region Server进行通讯；
@@ -55,12 +55,12 @@
 	6. 将合并后的最终结果返回给客户端。
 
 - HFile 合并（默认是7天）
-&ensp;Compaction分为两种，分别是Minor Compaction和Major Compaction
+	Compaction分为两种，分别是Minor Compaction和Major Compaction
 	1. Minor Compaction会将临近的若干个较小的HFile合并成一个较大的HFile，并清理掉部分过期和删除的数据。
 	2. Major Compaction会将一个Store下的所有的HFile合并成一个大HFile，并且会清理掉所有过期和删除的数据。
 
 - HBase优化
-&ensp;预分区
+	预分区
 	1. 手动设定预分区
 	```
 	create 'staff1','info', SPLITS => ['1000','2000','3000','4000']
