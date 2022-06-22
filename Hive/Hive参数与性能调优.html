@@ -1,0 +1,671 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Hive参数与性能调优 · Summary</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-footer-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism-solarizedlight.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-theme-comscore/test.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="Hive常见问题集.html" />
+    
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://zyxzyxu.github.io/experience/" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" >
+            
+                <span>
+            
+                    
+                    H Base
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../HBase/HBase进阶.html">
+            
+                <a href="../HBase/HBase进阶.html">
+            
+                    
+                    HBase进阶
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    Hive
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.3.1" data-path="Hive参数与性能调优.html">
+            
+                <a href="Hive参数与性能调优.html">
+            
+                    
+                    Hive参数与性能调优
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="Hive常见问题集.html">
+            
+                <a href="Hive常见问题集.html">
+            
+                    
+                    Hive常见问题集
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../gitbook.html">
+            
+                <a href="../gitbook.html">
+            
+                    
+                    Gitbook
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Hive参数与性能调优</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><li><span class="title-icon "></span><a href="#hive&#x6027;&#x80FD;&#x8C03;&#x4F18;&#x7684;&#x65B9;&#x5F0F;"><b>1. </b>Hive&#x6027;&#x80FD;&#x8C03;&#x4F18;&#x7684;&#x65B9;&#x5F0F;</a></li></ul></div><a href="#hive&#x6027;&#x80FD;&#x8C03;&#x4F18;&#x7684;&#x65B9;&#x5F0F;" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><h1 id="hive&#x6027;&#x80FD;&#x8C03;&#x4F18;&#x7684;&#x65B9;&#x5F0F;"><a name="hive&#x6027;&#x80FD;&#x8C03;&#x4F18;&#x7684;&#x65B9;&#x5F0F;" class="anchor-navigation-ex-anchor" href="#hive&#x6027;&#x80FD;&#x8C03;&#x4F18;&#x7684;&#x65B9;&#x5F0F;"><i class="fa fa-link" aria-hidden="true"></i></a>1. Hive&#x6027;&#x80FD;&#x8C03;&#x4F18;&#x7684;&#x65B9;&#x5F0F;</h1>
+<ul>
+<li><p>SQL&#x8BED;&#x53E5;&#x4F18;&#x5316;</p>
+<ol>
+<li><p>union all</p>
+<pre class="language-"><code class="lang-sql"> <span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> test01 <span class="token keyword">partition</span><span class="token punctuation">(</span>tp<span class="token punctuation">)</span>
+ <span class="token keyword">select</span> age&#xFF0C;<span class="token function">max</span><span class="token punctuation">(</span>birthday<span class="token punctuation">)</span> birthday&#xFF0C;<span class="token string">&apos;max&apos;</span> tp
+ <span class="token keyword">from</span> <span class="token keyword">user</span>
+ <span class="token keyword">group</span> <span class="token keyword">by</span> age
+
+ <span class="token keyword">union</span> <span class="token keyword">all</span>
+
+ <span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> test01 <span class="token keyword">partition</span><span class="token punctuation">(</span>tp<span class="token punctuation">)</span>
+ <span class="token keyword">select</span> age&#xFF0C;<span class="token function">min</span><span class="token punctuation">(</span>birthday<span class="token punctuation">)</span> birthday&#xFF0C;<span class="token string">&apos;min&apos;</span> tp
+ <span class="token keyword">from</span> <span class="token keyword">user</span>
+ <span class="token keyword">group</span> <span class="token keyword">by</span> age<span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p>union all &#x524D;&#x540E;&#x7684;&#x4E24;&#x4E2A;&#x8BED;&#x53E5;&#x90FD;&#x662F;&#x5BF9;&#x540C;&#x4E00;&#x5F20;&#x8868;&#x6309;&#x7167;age&#x8FDB;&#x884C;&#x5206;&#x7EC4;&#xFF0C;&#x7136;&#x540E;&#x5206;&#x522B;&#x53D6;&#x6700;&#x5927;&#x3001;&#x6700;&#x5C0F;&#x503C;&#xFF0C;&#x5BF9;&#x540C;&#x4E00;&#x5F20;&#x8868;&#x76F8;&#x540C;&#x7684;&#x5B57;&#x6BB5;&#x8FDB;&#x884C;&#x4E24;&#x6B21;&#x5206;&#x7EC4;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x4F18;&#x5316;&#xFF0C;&#x4F7F;&#x7528;&#x8BED;&#x6CD5;&#xFF1A;from ... insert into ... &#x4F7F;&#x7528;&#x4E00;&#x5F20;&#x8868;&#xFF0C;&#x53EF;&#x4EE5;&#x8FDB;&#x884C;&#x591A;&#x6B21;&#x63D2;&#x5165;&#x64CD;&#x4F5C;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql">  <span class="token comment">--&#x5F00;&#x542F;&#x52A8;&#x6001;&#x5206;&#x533A; </span>
+  <span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">exec</span><span class="token punctuation">.</span>dynamic<span class="token punctuation">.</span><span class="token keyword">partition</span><span class="token operator">=</span><span class="token boolean">true</span>&#xFF1B; 
+  <span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">exec</span><span class="token punctuation">.</span>dynamic<span class="token punctuation">.</span><span class="token keyword">partition</span><span class="token punctuation">.</span><span class="token keyword">mode</span><span class="token operator">=</span>nonstrict<span class="token punctuation">;</span>
+
+  <span class="token keyword">from</span> <span class="token keyword">user</span> 
+
+  <span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> test01 <span class="token keyword">partition</span><span class="token punctuation">(</span>tp<span class="token punctuation">)</span> 
+  <span class="token keyword">select</span> age&#xFF0C;<span class="token function">max</span><span class="token punctuation">(</span>birthday<span class="token punctuation">)</span> birthday&#xFF0C;<span class="token string">&apos;max&apos;</span> tp 
+  <span class="token keyword">group</span> <span class="token keyword">by</span> age
+
+  <span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> stu <span class="token keyword">partition</span><span class="token punctuation">(</span>tp<span class="token punctuation">)</span> 
+  <span class="token keyword">select</span> age&#xFF0C;<span class="token function">min</span><span class="token punctuation">(</span>birthday<span class="token punctuation">)</span> birthday&#xFF0C;<span class="token string">&apos;min&apos;</span> tp 
+  <span class="token keyword">group</span> <span class="token keyword">by</span> age<span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p>distinct</p>
+<pre class="language-"><code class="lang-sql"> <span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token keyword">from</span> <span class="token punctuation">(</span><span class="token keyword">select</span> age <span class="token keyword">from</span> test01 <span class="token keyword">group</span> <span class="token keyword">by</span> age<span class="token punctuation">)</span> a<span class="token punctuation">;</span>
+
+ <span class="token keyword">select</span> <span class="token function">count</span><span class="token punctuation">(</span><span class="token keyword">distinct</span> age<span class="token punctuation">)</span> <span class="token keyword">from</span> test01<span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li>&#x5728;&#x6570;&#x636E;&#x91CF;&#x7279;&#x522B;&#x5927;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x4F7F;&#x7528;&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x6709;&#x6548;&#x907F;&#x514D;Reduce&#x7AEF;&#x7684;&#x6570;&#x636E;&#x503E;&#x659C;</li>
+<li><p><strong>&#x5C31;&#x5F53;&#x524D;&#x7684;&#x4E1A;&#x52A1;&#x548C;&#x73AF;&#x5883;&#x4E0B;&#x4F7F;&#x7528;distinct&#x4E00;&#x5B9A;&#x4F1A;&#x6BD4;&#x4E0A;&#x9762;&#x90A3;&#x79CD;&#x5B50;&#x67E5;&#x8BE2;&#x7684;&#x65B9;&#x5F0F;&#x6548;&#x7387;&#x9AD8;</strong>&#xFF0C;&#x539F;&#x56E0;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li>&#x5728;&#x5F53;&#x524D;&#x6848;&#x4F8B;&#x4E0B;&#xFF0C;&#x53BB;&#x91CD;&#x5B57;&#x6BB5;&#x4E3A;&#x5E74;&#x9F84;&#xFF0C;&#x5E74;&#x9F84;&#x7684;&#x679A;&#x4E3E;&#x503C;&#x975E;&#x5E38;&#x6709;&#x9650;&#xFF0C;age&#x7684;&#x6700;&#x5927;&#x679A;&#x4E3E;&#x503C;&#x624D;&#x662F;100&#xFF0C;&#x5982;&#x679C;&#x8F6C;&#x5316;&#x6210;MapReduce&#x6765;&#x89E3;&#x91CA;&#x7684;&#x8BDD;&#xFF0C;&#x5728;Map&#x9636;&#x6BB5;&#xFF0C;&#x6BCF;&#x4E2A;Map&#x4F1A;&#x5BF9;age&#x53BB;&#x91CD;&#x3002;&#x7531;&#x4E8E;age&#x679A;&#x4E3E;&#x503C;&#x6709;&#x9650;&#xFF0C;&#x56E0;&#x800C;&#x6BCF;&#x4E2A;Map&#x5F97;&#x5230;&#x7684;age&#x4E5F;&#x6709;&#x9650;&#xFF0C;&#x6700;&#x7EC8;&#x5F97;&#x5230;reduce&#x7684;&#x6570;&#x636E;&#x91CF;&#x4E5F;&#x5C31;&#x662F;map&#x6570;&#x91CF;&#xD7;age&#x679A;&#x4E3E;&#x503C;&#x7684;&#x4E2A;&#x6570;</li>
+<li>&#x6700;&#x65B0;&#x7684;Hive 3.0&#x4E2D;&#x65B0;&#x589E;&#x4E86; count(distinct)&#x4F18;&#x5316;&#xFF0C;&#x901A;&#x8FC7;&#x914D;&#x7F6E;hive.optimize.countdistinct&#xFF0C;&#x5373;&#x4F7F;&#x771F;&#x7684;&#x51FA;&#x73B0;&#x6570;&#x636E;&#x503E;&#x659C;&#x4E5F;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x4F18;&#x5316;&#xFF0C;&#x81EA;&#x52A8;&#x6539;&#x53D8;SQL&#x6267;&#x884C;&#x7684;&#x903B;&#x8F91;</li>
+<li>&#x7B2C;&#x4E8C;&#x79CD;&#x65B9;&#x5F0F;&#x6BD4;&#x7B2C;&#x4E00;&#x79CD;&#x7B80;&#x6D01;&#x660E;&#x4E86;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x7279;&#x6B8A;&#x95EE;&#x9898;&#xFF0C;&#x7B80;&#x6D01;&#x4E3A;&#x4F18;</li>
+</ol>
+</li>
+<li><p><strong>&#x5728;&#x4E00;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#x4E0D;&#x8981;&#x8FC7;&#x5EA6;&#x4F18;&#x5316;&#xFF0C;&#x8C03;&#x4F18;&#x8BB2;&#x7A76;&#x9002;&#x65F6;&#x8C03;&#x4F18;&#xFF0C;&#x8FC7;&#x65E9;&#x8C03;&#x4F18;&#x53EF;&#x80FD;&#x505A;&#x7684;&#x662F;&#x65E0;&#x7528;&#x529F;&#x751A;&#x81F3;&#x8D1F;&#x6548;&#x5E94;</strong></p>
+</li>
+</ol>
+</li>
+<li>&#x6570;&#x636E;&#x683C;&#x5F0F;&#x4F18;&#x5316;<ul>
+<li>Hive&#x63D0;&#x4F9B;&#x591A;&#x79CD;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7EC4;&#x7EC7;&#x683C;&#x5F0F;&#xFF0C;&#x4E0D;&#x540C;&#x683C;&#x5F0F;&#x5BF9;&#x7A0B;&#x5E8F;&#x7684;&#x8FD0;&#x884C;&#x6548;&#x7387;&#x4E5F;&#x4F1A;&#x6709;&#x6781;&#x5927;&#x7684;&#x5F71;&#x54CD;</li>
+<li>Hive&#x63D0;&#x4F9B;&#x7684;&#x683C;&#x5F0F;&#x6709;TEXT&#x3001;SequenceFile&#x3001;RCFile&#x3001;ORC&#x548C;Parquet&#x7B49;</li>
+<li>SequenceFile&#x662F;&#x4E00;&#x4E2A;&#x4E8C;&#x8FDB;&#x5236;key/value&#x5BF9;&#x7ED3;&#x6784;&#x7684;&#x5E73;&#x9762;&#x6587;&#x4EF6;&#xFF0C;&#x5728;&#x65E9;&#x671F;&#x7684;Hadoop&#x5E73;&#x53F0;&#x4E0A;&#x88AB;&#x5E7F;&#x6CDB;&#x7528;&#x4E8E;MapReduce&#x8F93;&#x51FA;/&#x8F93;&#x51FA;&#x683C;&#x5F0F;&#xFF0C;&#x4EE5;&#x53CA;&#x4F5C;&#x4E3A;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x683C;&#x5F0F;</li>
+<li><em>Parquet</em>&#x662F;&#x4E00;&#x79CD;&#x5217;&#x5F0F;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x683C;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x517C;&#x5BB9;&#x591A;&#x79CD;&#x8BA1;&#x7B97;&#x5F15;&#x64CE;&#xFF0C;&#x5982;MapRedcue&#x548C;Spark&#x7B49;&#xFF0C;&#x5BF9;&#x591A;&#x5C42;&#x5D4C;&#x5957;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x6784;&#x63D0;&#x4F9B;&#x4E86;&#x826F;&#x597D;&#x7684;&#x6027;&#x80FD;&#x652F;&#x6301;&#xFF0C;&#x662F;&#x76EE;&#x524D;Hive&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x7684;&#x4E3B;&#x6D41;&#x9009;&#x62E9;&#x4E4B;&#x4E00;</li>
+<li>ORC&#x4F18;&#x5316;&#x662F;&#x5BF9;RCFile&#x7684;&#x4E00;&#x79CD;&#x4F18;&#x5316;&#xFF0C;&#x5B83;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x9AD8;&#x6548;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x5B58;&#x50A8;Hive&#x6570;&#x636E;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x80FD;&#x591F;&#x63D0;&#x9AD8;Hive&#x7684;&#x8BFB;&#x53D6;&#x3001;&#x5199;&#x5165;&#x548C;&#x5904;&#x7406;&#x6570;&#x636E;&#x7684;&#x6027;&#x80FD;&#xFF0C;&#x80FD;&#x591F;&#x517C;&#x5BB9;&#x591A;&#x79CD;&#x8BA1;&#x7B97;&#x5F15;&#x64CE;&#x3002;&#x4E8B;&#x5B9E;&#x4E0A;&#xFF0C;&#x5728;&#x5B9E;&#x9645;&#x7684;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#xFF0C;ORC&#x5DF2;&#x7ECF;&#x6210;&#x4E3A;&#x4E86;Hive&#x5728;&#x6570;&#x636E;&#x5B58;&#x50A8;&#x4E0A;&#x7684;&#x4E3B;&#x6D41;&#x9009;&#x62E9;&#x4E4B;&#x4E00;</li>
+</ul>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x6570;&#x636E;&#x683C;&#x5F0F;</th>
+<th style="text-align:center">CPU&#x65F6;&#x95F4;</th>
+<th style="text-align:center">&#x7528;&#x6237;&#x7B49;&#x5F85;&#x8017;&#x65F6;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TextFile</td>
+<td style="text-align:center">33&#x5206;</td>
+<td style="text-align:center">171&#x79D2;</td>
+</tr>
+<tr>
+<td style="text-align:center">SequenceFile</td>
+<td style="text-align:center">38&#x5206;</td>
+<td style="text-align:center">162&#x79D2;</td>
+</tr>
+<tr>
+<td style="text-align:center">Parquet</td>
+<td style="text-align:center">2&#x5206;22&#x79D2;</td>
+<td style="text-align:center">50&#x79D2;</td>
+</tr>
+<tr>
+<td style="text-align:center">ORC</td>
+<td style="text-align:center">1&#x5206;52&#x79D2;</td>
+<td style="text-align:center">56&#x79D2;</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>CPU&#x65F6;&#x95F4;</strong>&#xFF1A;&#x8868;&#x793A;&#x8FD0;&#x884C;&#x7A0B;&#x5E8F;&#x6240;&#x5360;&#x7528;&#x670D;&#x52A1;&#x5668;CPU&#x8D44;&#x6E90;&#x7684;&#x65F6;&#x95F4;
+<strong>&#x7528;&#x6237;&#x7B49;&#x5F85;&#x8017;&#x65F6;</strong>&#xFF1A;&#x8BB0;&#x5F55;&#x7684;&#x662F;&#x7528;&#x6237;&#x4ECE;&#x63D0;&#x4EA4;&#x4F5C;&#x4E1A;&#x5230;&#x8FD4;&#x56DE;&#x7ED3;&#x679C;&#x671F;&#x95F4;&#x7528;&#x6237;&#x7B49;&#x5F85;&#x7684;&#x6240;&#x6709;&#x65F6;&#x95F4;</p>
+</blockquote>
+<ul>
+<li><p>&#x5C0F;&#x6587;&#x4EF6;&#x8FC7;&#x591A;&#x4F18;&#x5316;</p>
+<p>  &#x5C0F;&#x6587;&#x4EF6;&#x5982;&#x679C;&#x8FC7;&#x591A;&#xFF0C;&#x5BF9; hive &#x6765;&#x8BF4;&#xFF0C;&#x5728;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x6BCF;&#x4E2A;&#x5C0F;&#x6587;&#x4EF6;&#x90FD;&#x4F1A;&#x5F53;&#x6210;&#x4E00;&#x4E2A;&#x5757;&#xFF0C;&#x542F;&#x52A8;&#x4E00;&#x4E2A;Map&#x4EFB;&#x52A1;&#x6765;&#x5B8C;&#x6210;&#xFF0C;&#x800C;&#x4E00;&#x4E2A;Map&#x4EFB;&#x52A1;&#x542F;&#x52A8;&#x548C;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x95F4;&#x8FDC;&#x8FDC;&#x5927;&#x4E8E;&#x903B;&#x8F91;&#x5904;&#x7406;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x5F88;&#x5927;&#x7684;&#x8D44;&#x6E90;&#x6D6A;&#x8D39;&#x3002;&#x800C;&#x4E14;&#xFF0C;&#x540C;&#x65F6;&#x53EF;&#x6267;&#x884C;&#x7684;Map&#x6570;&#x91CF;&#x662F;&#x53D7;&#x9650;&#x7684;</p>
+<ul>
+<li><p>&#x5C0F;&#x6587;&#x4EF6;&#x4EA7;&#x751F;&#x539F;&#x56E0;</p>
+<ol>
+<li>&#x76F4;&#x63A5;&#x5411;&#x8868;&#x4E2D;&#x63D2;&#x5165;&#x6570;&#x636E;<pre class="language-"><code class="lang-sql"><span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> test02 <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token number">1</span>&#xFF0C;<span class="token string">&apos;a&apos;</span><span class="token punctuation">)</span>&#xFF0C;<span class="token punctuation">(</span><span class="token number">2</span>&#xFF0C;<span class="token string">&apos;b&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+&#x591A;&#x6B21;&#x63D2;&#x5165;&#x5C11;&#x91CF;&#x6570;&#x636E;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x591A;&#x4E2A;&#x5C0F;&#x6587;&#x4EF6;&#xFF0C;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x57FA;&#x672C;&#x6CA1;&#x6709;&#x4F7F;&#x7528;</li>
+<li>&#x901A;&#x8FC7;load&#x65B9;&#x5F0F;&#x52A0;&#x8F7D;&#x6570;&#x636E;<pre class="language-"><code class="lang-sql"><span class="token comment">#&#x5BFC;&#x5165;&#x6587;&#x4EF6;</span>
+<span class="token keyword">load</span> <span class="token keyword">data</span> <span class="token keyword">local</span> inpath <span class="token string">&apos;/export/list.csv&apos;</span> overwrite <span class="token keyword">into</span> <span class="token keyword">table</span> test02
+<span class="token comment">#&#x5BFC;&#x5165;&#x6587;&#x4EF6;&#x5939;</span>
+<span class="token keyword">load</span> <span class="token keyword">data</span> <span class="token keyword">local</span> inpath <span class="token string">&apos;/export/list&apos;</span> overwrite <span class="token keyword">into</span> <span class="token keyword">table</span> test02
+</code></pre>
+&#x4F7F;&#x7528;load data&#x65B9;&#x5F0F;&#x53EF;&#x4EE5;&#x5BFC;&#x5165;&#x6587;&#x4EF6;&#x6216;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x5F53;&#x5BFC;&#x5165;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x65F6;&#xFF0C;hive&#x8868;&#x5C31;&#x6709;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x5F53;&#x5BFC;&#x5165;&#x6587;&#x4EF6;&#x5939;&#x65F6;&#xFF0C;hive&#x8868;&#x7684;&#x6587;&#x4EF6;&#x6570;&#x91CF;&#x4E3A;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x7684;&#x6570;&#x91CF;</li>
+<li>&#x901A;&#x8FC7;&#x67E5;&#x8BE2;&#x65B9;&#x5F0F;&#x52A0;&#x8F7D;&#x6570;&#x636E;<pre class="language-"><code class="lang-sql"><span class="token keyword">insert</span> overwrite <span class="token keyword">table</span> test02 <span class="token keyword">select</span> id&#xFF0C;name <span class="token keyword">from</span> test03<span class="token punctuation">;</span>
+</code></pre>
+&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#x4E2D;&#x5E38;&#x7528;&#x7684;&#xFF0C;&#x4E5F;&#x662F;&#x6700;&#x5BB9;&#x6613;&#x4EA7;&#x751F;&#x5C0F;&#x6587;&#x4EF6;&#x7684;&#x65B9;&#x5F0F;
+insert &#x5BFC;&#x5165;&#x6570;&#x636E;&#x65F6;&#x4F1A;&#x542F;&#x52A8; MR &#x4EFB;&#x52A1;&#xFF0C;MR &#x4E2D; reduce &#x6709;&#x591A;&#x5C11;&#x4E2A;&#x5C31;&#x8F93;&#x51FA;&#x591A;&#x5C11;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x6240;&#x4EE5;&#xFF0C;&#x6587;&#x4EF6;&#x6570;&#x91CF; = ReduceTask&#x6570;&#x91CF;&#xD7;&#x5206;&#x533A;&#x6570;
+&#x4E5F;&#x6709;&#x5F88;&#x591A;&#x7B80;&#x5355;&#x4EFB;&#x52A1;&#x6CA1;&#x6709;reduce&#xFF0C;&#x53EA;&#x6709;map&#x9636;&#x6BB5;&#xFF0C;&#x5219;&#x6587;&#x4EF6;&#x6570;&#x91CF; = MapTask&#x6570;&#x91CF;&#xD7;&#x5206;&#x533A;&#x6570;
+&#x6BCF;&#x6267;&#x884C;&#x4E00;&#x6B21; insert &#x65F6;hive&#x4E2D;&#x81F3;&#x5C11;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x56E0;&#x4E3A; insert &#x5BFC;&#x5165;&#x65F6;&#x81F3;&#x5C11;&#x4F1A;&#x6709;&#x4E00;&#x4E2A;MapTask&#x3002;
+&#x50CF;&#x6709;&#x7684;&#x4E1A;&#x52A1;&#x9700;&#x8981;&#x6BCF;10&#x5206;&#x949F;&#x5C31;&#x8981;&#x628A;&#x6570;&#x636E;&#x540C;&#x6B65;&#x5230; hive &#x4E2D;&#xFF0C;&#x8FD9;&#x6837;&#x4EA7;&#x751F;&#x7684;&#x6587;&#x4EF6;&#x5C31;&#x4F1A;&#x5F88;&#x591A;&#x3002;</li>
+</ol>
+</li>
+<li><p>&#x5C0F;&#x6587;&#x4EF6;&#x8FC7;&#x591A;&#x4EA7;&#x751F;&#x7684;&#x5F71;&#x54CD;</p>
+<ol>
+<li>&#x9996;&#x5148;&#x5BF9;&#x5E95;&#x5C42;&#x5B58;&#x50A8;HDFS&#x6765;&#x8BF4;&#xFF0C;HDFS&#x672C;&#x8EAB;&#x5C31;&#x4E0D;&#x9002;&#x5408;&#x5B58;&#x50A8;&#x5927;&#x91CF;&#x5C0F;&#x6587;&#x4EF6;&#xFF0C;&#x5C0F;&#x6587;&#x4EF6;&#x8FC7;&#x591A;&#x4F1A;&#x5BFC;&#x81F4;namenode&#x5143;&#x6570;&#x636E;&#x7279;&#x522B;&#x5927;&#xFF0C;&#x5360;&#x7528;&#x592A;&#x591A;&#x5185;&#x5B58;&#xFF0C;&#x4E25;&#x91CD;&#x5F71;&#x54CD;HDFS&#x7684;&#x6027;&#x80FD;</li>
+<li>&#x5BF9; hive &#x6765;&#x8BF4;&#xFF0C;&#x5728;&#x8FDB;&#x884C;&#x67E5;&#x8BE2;&#x65F6;&#xFF0C;&#x6BCF;&#x4E2A;&#x5C0F;&#x6587;&#x4EF6;&#x90FD;&#x4F1A;&#x5F53;&#x6210;&#x4E00;&#x4E2A;&#x5757;&#xFF0C;&#x542F;&#x52A8;&#x4E00;&#x4E2A;Map&#x4EFB;&#x52A1;&#x6765;&#x5B8C;&#x6210;&#xFF0C;&#x800C;&#x4E00;&#x4E2A;Map&#x4EFB;&#x52A1;&#x542F;&#x52A8;&#x548C;&#x521D;&#x59CB;&#x5316;&#x7684;&#x65F6;&#x95F4;&#x8FDC;&#x8FDC;&#x5927;&#x4E8E;&#x903B;&#x8F91;&#x5904;&#x7406;&#x7684;&#x65F6;&#x95F4;&#xFF0C;&#x5C31;&#x4F1A;&#x9020;&#x6210;&#x5F88;&#x5927;&#x7684;&#x8D44;&#x6E90;&#x6D6A;&#x8D39;&#x3002;&#x800C;&#x4E14;&#xFF0C;&#x540C;&#x65F6;&#x53EF;&#x6267;&#x884C;&#x7684;Map&#x6570;&#x91CF;&#x662F;&#x53D7;&#x9650;&#x7684;&#x3002;</li>
+</ol>
+</li>
+<li><p>&#x89E3;&#x51B3;&#x5C0F;&#x6587;&#x4EF6;&#x8FC7;&#x591A;</p>
+<ol>
+<li><p>&#x4F7F;&#x7528; hive &#x81EA;&#x5E26;&#x7684; concatenate &#x547D;&#x4EE4;&#xFF0C;&#x81EA;&#x52A8;&#x5408;&#x5E76;&#x5C0F;&#x6587;&#x4EF6;
+&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql"><span class="token comment">#&#x5BF9;&#x4E8E;&#x975E;&#x5206;&#x533A;&#x8868;</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> A concatenate<span class="token punctuation">;</span>
+
+<span class="token comment">#&#x5BF9;&#x4E8E;&#x5206;&#x533A;&#x8868;</span>
+<span class="token keyword">alter</span> <span class="token keyword">table</span> B <span class="token keyword">partition</span><span class="token punctuation">(</span><span class="token keyword">day</span><span class="token operator">=</span><span class="token number">20220101</span><span class="token punctuation">)</span> concatenate<span class="token punctuation">;</span>
+</code></pre>
+<p>&#x4E3E;&#x4F8B;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql"><span class="token comment">#&#x5411; A &#x8868;&#x4E2D;&#x63D2;&#x5165;&#x6570;&#x636E;</span>
+hive <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> <span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> A <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token string">&apos;aa&apos;</span><span class="token punctuation">,</span><span class="token number">67</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token string">&apos;bb&apos;</span><span class="token punctuation">,</span><span class="token number">87</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hive <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> <span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> A <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token string">&apos;cc&apos;</span><span class="token punctuation">,</span><span class="token number">67</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token string">&apos;dd&apos;</span><span class="token punctuation">,</span><span class="token number">87</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+hive <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> <span class="token keyword">insert</span> <span class="token keyword">into</span> <span class="token keyword">table</span> A <span class="token keyword">values</span> <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token string">&apos;ee&apos;</span><span class="token punctuation">,</span><span class="token number">67</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token string">&apos;ff&apos;</span><span class="token punctuation">,</span><span class="token number">87</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">#&#x6267;&#x884C;&#x4EE5;&#x4E0A;&#x4E09;&#x6761;&#x8BED;&#x53E5;&#xFF0C;&#x5219;A&#x8868;&#x4E0B;&#x5C31;&#x4F1A;&#x6709;&#x4E09;&#x4E2A;&#x5C0F;&#x6587;&#x4EF6;,&#x5728;hive&#x547D;&#x4EE4;&#x884C;&#x6267;&#x884C;&#x5982;&#x4E0B;&#x8BED;&#x53E5;</span>
+<span class="token comment">#&#x67E5;&#x770B;A&#x8868;&#x4E0B;&#x6587;&#x4EF6;&#x6570;&#x91CF;</span>
+hive <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> dfs <span class="token operator">-</span>ls <span class="token operator">/</span><span class="token keyword">user</span><span class="token operator">/</span>hive<span class="token operator">/</span>warehouse<span class="token operator">/</span>A<span class="token punctuation">;</span>
+Found <span class="token number">3</span> items
+<span class="token operator">-</span>rwxr<span class="token operator">-</span>xr<span class="token operator">-</span>x   <span class="token number">3</span> root supergroup        <span class="token number">378</span> <span class="token number">2022</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">01</span> <span class="token number">14</span>&#xFF1A;<span class="token number">46</span> <span class="token operator">/</span><span class="token keyword">user</span><span class="token operator">/</span>hive<span class="token operator">/</span>warehouse<span class="token operator">/</span>A<span class="token operator">/</span><span class="token number">000000</span>_0
+<span class="token operator">-</span>rwxr<span class="token operator">-</span>xr<span class="token operator">-</span>x   <span class="token number">3</span> root supergroup        <span class="token number">378</span> <span class="token number">2022</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">01</span> <span class="token number">14</span>&#xFF1A;<span class="token number">47</span> <span class="token operator">/</span><span class="token keyword">user</span><span class="token operator">/</span>hive<span class="token operator">/</span>warehouse<span class="token operator">/</span>A<span class="token operator">/</span><span class="token number">000000</span>_0_copy_1
+<span class="token operator">-</span>rwxr<span class="token operator">-</span>xr<span class="token operator">-</span>x   <span class="token number">3</span> root supergroup        <span class="token number">378</span> <span class="token number">2022</span><span class="token operator">-</span><span class="token number">01</span><span class="token operator">-</span><span class="token number">01</span> <span class="token number">14</span>&#xFF1A;<span class="token number">48</span> <span class="token operator">/</span><span class="token keyword">user</span><span class="token operator">/</span>hive<span class="token operator">/</span>warehouse<span class="token operator">/</span>A<span class="token operator">/</span><span class="token number">000000</span>_0_copy_2
+
+<span class="token comment">#&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x6709;&#x4E09;&#x4E2A;&#x5C0F;&#x6587;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528; concatenate &#x8FDB;&#x884C;&#x5408;&#x5E76;</span>
+hive <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> <span class="token keyword">alter</span> <span class="token keyword">table</span> A concatenate<span class="token punctuation">;</span>
+
+<span class="token comment">#&#x518D;&#x6B21;&#x67E5;&#x770B;A&#x8868;&#x4E0B;&#x6587;&#x4EF6;&#x6570;&#x91CF;</span>
+hive <span class="token punctuation">(</span><span class="token keyword">default</span><span class="token punctuation">)</span><span class="token operator">&gt;</span> dfs <span class="token operator">-</span>ls <span class="token operator">/</span><span class="token keyword">user</span><span class="token operator">/</span>hive<span class="token operator">/</span>warehouse<span class="token operator">/</span>A<span class="token punctuation">;</span>
+Found <span class="token number">1</span> items
+<span class="token operator">-</span>rwxr<span class="token operator">-</span>xr<span class="token operator">-</span>x   <span class="token number">3</span> root supergroup        <span class="token number">778</span> <span class="token number">2020</span><span class="token operator">-</span><span class="token number">12</span><span class="token operator">-</span><span class="token number">24</span> <span class="token number">14</span>&#xFF1A;<span class="token number">59</span> <span class="token operator">/</span><span class="token keyword">user</span><span class="token operator">/</span>hive<span class="token operator">/</span>warehouse<span class="token operator">/</span>A<span class="token operator">/</span><span class="token number">000000</span>_0
+
+<span class="token comment">#&#x5DF2;&#x5408;&#x5E76;&#x6210;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;</span>
+</code></pre>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A; 
+1&#x3001;concatenate &#x547D;&#x4EE4;&#x53EA;&#x652F;&#x6301; RCFILE &#x548C; ORC &#x6587;&#x4EF6;&#x7C7B;&#x578B;&#x3002; 
+2&#x3001;&#x4F7F;&#x7528;concatenate&#x547D;&#x4EE4;&#x5408;&#x5E76;&#x5C0F;&#x6587;&#x4EF6;&#x65F6;&#x4E0D;&#x80FD;&#x6307;&#x5B9A;&#x5408;&#x5E76;&#x540E;&#x7684;&#x6587;&#x4EF6;&#x6570;&#x91CF;&#xFF0C;&#x4F46;&#x53EF;&#x4EE5;&#x591A;&#x6B21;&#x6267;&#x884C;&#x8BE5;&#x547D;&#x4EE4;&#x3002; 
+3&#x3001;&#x5F53;&#x591A;&#x6B21;&#x4F7F;&#x7528;concatenate&#x540E;&#x6587;&#x4EF6;&#x6570;&#x91CF;&#x4E0D;&#x5728;&#x53D8;&#x5316;&#xFF0C;&#x8FD9;&#x4E2A;&#x8DDF;&#x53C2;&#x6570; mapreduce.input.fileinputformat.split.minsize=256mb &#x7684;&#x8BBE;&#x7F6E;&#x6709;&#x5173;&#xFF0C;&#x53EF;&#x8BBE;&#x5B9A;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x7684;&#x6700;&#x5C0F;size&#x3002;</p>
+</blockquote>
+</li>
+<li><p>&#x8C03;&#x6574;&#x53C2;&#x6570;&#x51CF;&#x5C11;Map&#x6570;&#x91CF;
+&#x8BBE;&#x7F6E;map&#x8F93;&#x5165;&#x5408;&#x5E76;&#x5C0F;&#x6587;&#x4EF6;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql"><span class="token comment">#&#x6267;&#x884C;Map&#x524D;&#x8FDB;&#x884C;&#x5C0F;&#x6587;&#x4EF6;&#x5408;&#x5E76;</span>
+<span class="token comment">#CombineHiveInputFormat&#x5E95;&#x5C42;&#x662F; Hadoop&#x7684; CombineFileInputFormat &#x65B9;&#x6CD5;</span>
+<span class="token comment">#&#x6B64;&#x65B9;&#x6CD5;&#x662F;&#x5728;mapper&#x4E2D;&#x5C06;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x5408;&#x6210;&#x4E00;&#x4E2A;split&#x4F5C;&#x4E3A;&#x8F93;&#x5165;</span>
+<span class="token keyword">set</span> hive<span class="token punctuation">.</span>input<span class="token punctuation">.</span>format<span class="token operator">=</span>org<span class="token punctuation">.</span>apache<span class="token punctuation">.</span>hadoop<span class="token punctuation">.</span>hive<span class="token punctuation">.</span>ql<span class="token punctuation">.</span>io<span class="token punctuation">.</span>CombineHiveInputFormat<span class="token punctuation">;</span> <span class="token comment">-- &#x9ED8;&#x8BA4;</span>
+
+<span class="token comment">#&#x6BCF;&#x4E2A;Map&#x6700;&#x5927;&#x8F93;&#x5165;&#x5927;&#x5C0F;(&#x8FD9;&#x4E2A;&#x503C;&#x51B3;&#x5B9A;&#x4E86;&#x5408;&#x5E76;&#x540E;&#x6587;&#x4EF6;&#x7684;&#x6570;&#x91CF;)</span>
+<span class="token keyword">set</span> mapred<span class="token punctuation">.</span>max<span class="token punctuation">.</span>split<span class="token punctuation">.</span>size<span class="token operator">=</span><span class="token number">256000000</span><span class="token punctuation">;</span>   <span class="token comment">-- 256M</span>
+
+<span class="token comment">#&#x4E00;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;split&#x7684;&#x81F3;&#x5C11;&#x7684;&#x5927;&#x5C0F;(&#x8FD9;&#x4E2A;&#x503C;&#x51B3;&#x5B9A;&#x4E86;&#x591A;&#x4E2A;DataNode&#x4E0A;&#x7684;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x9700;&#x8981;&#x5408;&#x5E76;)</span>
+<span class="token keyword">set</span> mapred<span class="token punctuation">.</span>min<span class="token punctuation">.</span>split<span class="token punctuation">.</span>size<span class="token punctuation">.</span>per<span class="token punctuation">.</span>node<span class="token operator">=</span><span class="token number">100000000</span><span class="token punctuation">;</span>  <span class="token comment">-- 100M</span>
+
+<span class="token comment">#&#x4E00;&#x4E2A;&#x4EA4;&#x6362;&#x673A;&#x4E0B;split&#x7684;&#x81F3;&#x5C11;&#x7684;&#x5927;&#x5C0F;(&#x8FD9;&#x4E2A;&#x503C;&#x51B3;&#x5B9A;&#x4E86;&#x591A;&#x4E2A;&#x4EA4;&#x6362;&#x673A;&#x4E0A;&#x7684;&#x6587;&#x4EF6;&#x662F;&#x5426;&#x9700;&#x8981;&#x5408;&#x5E76;)</span>
+<span class="token keyword">set</span> mapred<span class="token punctuation">.</span>min<span class="token punctuation">.</span>split<span class="token punctuation">.</span>size<span class="token punctuation">.</span>per<span class="token punctuation">.</span>rack<span class="token operator">=</span><span class="token number">100000000</span><span class="token punctuation">;</span>  <span class="token comment">-- 100M</span>
+</code></pre>
+<p>&#x8BBE;&#x7F6E;map&#x8F93;&#x51FA;&#x548C;reduce&#x8F93;&#x51FA;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#x7684;&#x76F8;&#x5173;&#x53C2;&#x6570;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql"><span class="token comment">#&#x8BBE;&#x7F6E;map&#x7AEF;&#x8F93;&#x51FA;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;true</span>
+<span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">merge</span><span class="token punctuation">.</span>mapfiles <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+<span class="token comment">#&#x8BBE;&#x7F6E;reduce&#x7AEF;&#x8F93;&#x51FA;&#x8FDB;&#x884C;&#x5408;&#x5E76;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;false</span>
+<span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">merge</span><span class="token punctuation">.</span>mapredfiles <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+<span class="token comment">#&#x8BBE;&#x7F6E;&#x5408;&#x5E76;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;</span>
+<span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">merge</span><span class="token punctuation">.</span>size<span class="token punctuation">.</span>per<span class="token punctuation">.</span>task <span class="token operator">=</span> <span class="token number">256</span><span class="token operator">*</span><span class="token number">1000</span><span class="token operator">*</span><span class="token number">1000</span><span class="token punctuation">;</span>   <span class="token comment">-- 256M</span>
+
+<span class="token comment">#&#x5F53;&#x8F93;&#x51FA;&#x6587;&#x4EF6;&#x7684;&#x5E73;&#x5747;&#x5927;&#x5C0F;&#x5C0F;&#x4E8E;&#x8BE5;&#x503C;&#x65F6;&#xFF0C;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x72EC;&#x7ACB;&#x7684;MapReduce&#x4EFB;&#x52A1;&#x8FDB;&#x884C;&#x6587;&#x4EF6;merge</span>
+<span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">merge</span><span class="token punctuation">.</span>smallfiles<span class="token punctuation">.</span>avgsize<span class="token operator">=</span><span class="token number">16000000</span><span class="token punctuation">;</span>   <span class="token comment">-- 16M</span>
+</code></pre>
+<p>&#x542F;&#x7528;&#x538B;&#x7F29;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql"><span class="token comment"># hive&#x7684;&#x67E5;&#x8BE2;&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#x662F;&#x5426;&#x8FDB;&#x884C;&#x538B;&#x7F29;</span>
+<span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">exec</span><span class="token punctuation">.</span>compress<span class="token punctuation">.</span>output<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+
+<span class="token comment"># MapReduce Job&#x7684;&#x7ED3;&#x679C;&#x8F93;&#x51FA;&#x662F;&#x5426;&#x4F7F;&#x7528;&#x538B;&#x7F29;</span>
+<span class="token keyword">set</span> mapreduce<span class="token punctuation">.</span>output<span class="token punctuation">.</span>fileoutputformat<span class="token punctuation">.</span>compress<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+<li><p>&#x51CF;&#x5C11;Reduce&#x7684;&#x6570;&#x91CF;</p>
+<pre class="language-"><code class="lang-sql"><span class="token comment">#reduce &#x7684;&#x4E2A;&#x6570;&#x51B3;&#x5B9A;&#x4E86;&#x8F93;&#x51FA;&#x7684;&#x6587;&#x4EF6;&#x7684;&#x4E2A;&#x6570;&#xFF0C;&#x6240;&#x4EE5;&#x53EF;&#x4EE5;&#x8C03;&#x6574;reduce&#x7684;&#x4E2A;&#x6570;&#x63A7;&#x5236;hive&#x8868;&#x7684;&#x6587;&#x4EF6;&#x6570;&#x91CF;&#xFF0C;</span>
+<span class="token comment">#hive&#x4E2D;&#x7684;&#x5206;&#x533A;&#x51FD;&#x6570; distribute by &#x6B63;&#x597D;&#x662F;&#x63A7;&#x5236;MR&#x4E2D;partition&#x5206;&#x533A;&#x7684;&#xFF0C;</span>
+<span class="token comment">#&#x7136;&#x540E;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;reduce&#x7684;&#x6570;&#x91CF;&#xFF0C;&#x7ED3;&#x5408;&#x5206;&#x533A;&#x51FD;&#x6570;&#x8BA9;&#x6570;&#x636E;&#x5747;&#x8861;&#x7684;&#x8FDB;&#x5165;&#x6BCF;&#x4E2A;reduce&#x5373;&#x53EF;&#x3002;</span>
+
+<span class="token comment">#&#x8BBE;&#x7F6E;reduce&#x7684;&#x6570;&#x91CF;&#x6709;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x7B2C;&#x4E00;&#x79CD;&#x662F;&#x76F4;&#x63A5;&#x8BBE;&#x7F6E;reduce&#x4E2A;&#x6570;</span>
+<span class="token keyword">set</span> mapreduce<span class="token punctuation">.</span>job<span class="token punctuation">.</span>reduces<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+
+<span class="token comment">#&#x7B2C;&#x4E8C;&#x79CD;&#x662F;&#x8BBE;&#x7F6E;&#x6BCF;&#x4E2A;reduce&#x7684;&#x5927;&#x5C0F;&#xFF0C;Hive&#x4F1A;&#x6839;&#x636E;&#x6570;&#x636E;&#x603B;&#x5927;&#x5C0F;&#x731C;&#x6D4B;&#x786E;&#x5B9A;&#x4E00;&#x4E2A;reduce&#x4E2A;&#x6570;</span>
+<span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">exec</span><span class="token punctuation">.</span>reducers<span class="token punctuation">.</span>bytes<span class="token punctuation">.</span>per<span class="token punctuation">.</span>reducer<span class="token operator">=</span><span class="token number">5120000000</span><span class="token punctuation">;</span> <span class="token comment">-- &#x9ED8;&#x8BA4;&#x662F;1G&#xFF0C;&#x8BBE;&#x7F6E;&#x4E3A;5G</span>
+
+<span class="token comment">#&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x8BED;&#x53E5;&#xFF0C;&#x5C06;&#x6570;&#x636E;&#x5747;&#x8861;&#x7684;&#x5206;&#x914D;&#x5230;reduce&#x4E2D;</span>
+<span class="token keyword">set</span> mapreduce<span class="token punctuation">.</span>job<span class="token punctuation">.</span>reduces<span class="token operator">=</span><span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token keyword">insert</span> overwrite <span class="token keyword">table</span> A <span class="token keyword">partition</span><span class="token punctuation">(</span>dt<span class="token punctuation">)</span>
+<span class="token keyword">select</span> <span class="token operator">*</span> <span class="token keyword">from</span> B
+distribute <span class="token keyword">by</span> rand<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">#&#x89E3;&#x91CA;&#xFF1A;&#x5982;&#x8BBE;&#x7F6E;reduce&#x6570;&#x91CF;&#x4E3A;10&#xFF0C;&#x5219;&#x4F7F;&#x7528; rand()&#xFF0C; &#x968F;&#x673A;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x6570; x % 10 &#xFF0C;</span>
+<span class="token comment">#&#x8FD9;&#x6837;&#x6570;&#x636E;&#x5C31;&#x4F1A;&#x968F;&#x673A;&#x8FDB;&#x5165; reduce &#x4E2D;&#xFF0C;&#x9632;&#x6B62;&#x51FA;&#x73B0;&#x6709;&#x7684;&#x6587;&#x4EF6;&#x8FC7;&#x5927;&#x6216;&#x8FC7;&#x5C0F;</span>
+</code></pre>
+</li>
+<li><p>&#x4F7F;&#x7528;hadoop&#x7684;archive&#x5C06;&#x5C0F;&#x6587;&#x4EF6;&#x5F52;&#x6863;
+Hadoop Archive&#x7B80;&#x79F0;HAR&#xFF0C;&#x662F;&#x4E00;&#x4E2A;&#x9AD8;&#x6548;&#x5730;&#x5C06;&#x5C0F;&#x6587;&#x4EF6;&#x653E;&#x5165;HDFS&#x5757;&#x4E2D;&#x7684;&#x6587;&#x4EF6;&#x5B58;&#x6863;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x80FD;&#x591F;&#x5C06;&#x591A;&#x4E2A;&#x5C0F;&#x6587;&#x4EF6;&#x6253;&#x5305;&#x6210;&#x4E00;&#x4E2A;HAR&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x6837;&#x5728;&#x51CF;&#x5C11;namenode&#x5185;&#x5B58;&#x4F7F;&#x7528;&#x7684;&#x540C;&#x65F6;&#xFF0C;&#x4ECD;&#x7136;&#x5141;&#x8BB8;&#x5BF9;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x900F;&#x660E;&#x7684;&#x8BBF;&#x95EE;</p>
+<pre class="language-"><code class="lang-sql"><span class="token comment">#&#x7528;&#x6765;&#x63A7;&#x5236;&#x5F52;&#x6863;&#x662F;&#x5426;&#x53EF;&#x7528;</span>
+<span class="token keyword">set</span> hive<span class="token punctuation">.</span>archive<span class="token punctuation">.</span>enabled<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token comment">#&#x901A;&#x77E5;Hive&#x5728;&#x521B;&#x5EFA;&#x5F52;&#x6863;&#x65F6;&#x662F;&#x5426;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x7236;&#x76EE;&#x5F55;</span>
+<span class="token keyword">set</span> hive<span class="token punctuation">.</span>archive<span class="token punctuation">.</span>har<span class="token punctuation">.</span>parentdir<span class="token punctuation">.</span>settable<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token comment">#&#x63A7;&#x5236;&#x9700;&#x8981;&#x5F52;&#x6863;&#x6587;&#x4EF6;&#x7684;&#x5927;&#x5C0F;</span>
+<span class="token keyword">set</span> har<span class="token punctuation">.</span>partfile<span class="token punctuation">.</span>size<span class="token operator">=</span><span class="token number">1099511627776</span><span class="token punctuation">;</span>
+
+<span class="token comment">#&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x5F52;&#x6863;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> A ARCHIVE <span class="token keyword">PARTITION</span><span class="token punctuation">(</span>dt<span class="token operator">=</span><span class="token string">&apos;2022-01-01&apos;</span><span class="token punctuation">,</span> hr<span class="token operator">=</span><span class="token string">&apos;12&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">#&#x5BF9;&#x5DF2;&#x5F52;&#x6863;&#x7684;&#x5206;&#x533A;&#x6062;&#x590D;&#x4E3A;&#x539F;&#x6587;&#x4EF6;</span>
+<span class="token keyword">ALTER</span> <span class="token keyword">TABLE</span> A UNARCHIVE <span class="token keyword">PARTITION</span><span class="token punctuation">(</span>dt<span class="token operator">=</span><span class="token string">&apos;2022-01-01&apos;</span><span class="token punctuation">,</span> hr<span class="token operator">=</span><span class="token string">&apos;12&apos;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x5F52;&#x6863;&#x7684;&#x5206;&#x533A;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x4E0D;&#x80FD; insert overwrite&#xFF0C;&#x5FC5;&#x987B;&#x5148; unarchive&#x3002;&#x5982;&#x679C;&#x662F;&#x65B0;&#x96C6;&#x7FA4;&#xFF0C;&#x6CA1;&#x6709;&#x5386;&#x53F2;&#x9057;&#x7559;&#x95EE;&#x9898;&#x7684;&#x8BDD;&#xFF0C;&#x5EFA;&#x8BAE;hive&#x4F7F;&#x7528; orc &#x6587;&#x4EF6;&#x683C;&#x5F0F;&#xFF0C;&#x4EE5;&#x53CA;&#x542F;&#x7528; lzo &#x538B;&#x7F29;&#x3002;&#x8FD9;&#x6837;&#x5C0F;&#x6587;&#x4EF6;&#x8FC7;&#x591A;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;hive&#x81EA;&#x5E26;&#x547D;&#x4EE4; concatenate &#x5FEB;&#x901F;&#x5408;&#x5E76;&#x3002;</p>
+</blockquote>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>&#x5E76;&#x884C;&#x6267;&#x884C;&#x4F18;&#x5316;
+  Hive&#x4F1A;&#x5C06;&#x4E00;&#x4E2A;&#x67E5;&#x8BE2;&#x8F6C;&#x5316;&#x6210;&#x4E00;&#x4E2A;&#x6216;&#x8005;&#x591A;&#x4E2A;&#x9636;&#x6BB5;&#x3002;&#x8FD9;&#x6837;&#x7684;&#x9636;&#x6BB5;&#x53EF;&#x4EE5;&#x662F;MapReduce&#x9636;&#x6BB5;&#x3001;&#x62BD;&#x6837;&#x9636;&#x6BB5;&#x3001;&#x5408;&#x5E76;&#x9636;&#x6BB5;&#x3001;limit&#x9636;&#x6BB5;&#x3002;&#x6216;&#x8005;Hive&#x6267;&#x884C;&#x8FC7;&#x7A0B;&#x4E2D;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x7684;&#x5176;&#x4ED6;&#x9636;&#x6BB5;&#x3002;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Hive&#x4E00;&#x6B21;&#x53EA;&#x4F1A;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x9636;&#x6BB5;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x67D0;&#x4E2A;&#x7279;&#x5B9A;&#x7684;job&#x53EF;&#x80FD;&#x5305;&#x542B;&#x4F17;&#x591A;&#x7684;&#x9636;&#x6BB5;&#xFF0C;&#x800C;&#x8FD9;&#x4E9B;&#x9636;&#x6BB5;&#x53EF;&#x80FD;&#x5E76;&#x975E;&#x5B8C;&#x5168;&#x4E92;&#x76F8;&#x4F9D;&#x8D56;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x6709;&#x4E9B;&#x9636;&#x6BB5;&#x662F;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4F7F;&#x5F97;&#x6574;&#x4E2A;job&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x7F29;&#x77ED;&#x3002;&#x5982;&#x679C;&#x6709;&#x66F4;&#x591A;&#x7684;&#x9636;&#x6BB5;&#x53EF;&#x4EE5;&#x5E76;&#x884C;&#x6267;&#x884C;&#xFF0C;&#x90A3;&#x4E48;job&#x53EF;&#x80FD;&#x5C31;&#x8D8A;&#x5FEB;&#x7684;&#x5B8C;&#x6210;&#x3002;</p>
+<p>  &#x901A;&#x8FC7;&#x8BBE;&#x7F6E;&#x53C2;&#x6570;hive.exec.parallel&#x503C;&#x4E3A;true&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5F00;&#x542F;&#x5E76;&#x53D1;&#x6267;&#x884C;&#x3002;&#x5728;&#x5171;&#x4EAB;&#x96C6;&#x7FA4;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x4E0B;&#xFF0C;&#x5982;&#x679C;job&#x4E2D;&#x5E76;&#x884C;&#x9636;&#x6BB5;&#x589E;&#x591A;&#xFF0C;&#x90A3;&#x4E48;&#x96C6;&#x7FA4;&#x5229;&#x7528;&#x7387;&#x5C31;&#x4F1A;&#x589E;&#x52A0;&#x3002;</p>
+<pre class="language-"><code class="lang-sql">  <span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">exec</span><span class="token punctuation">.</span>parallel<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span> <span class="token comment">//&#x6253;&#x5F00;&#x4EFB;&#x52A1;&#x5E76;&#x884C;&#x6267;&#x884C;</span>
+  <span class="token keyword">set</span> hive<span class="token punctuation">.</span><span class="token keyword">exec</span><span class="token punctuation">.</span>parallel<span class="token punctuation">.</span>thread<span class="token punctuation">.</span>number<span class="token operator">=</span><span class="token number">16</span><span class="token punctuation">;</span> <span class="token comment">//&#x540C;&#x4E00;&#x4E2A;sql&#x5141;&#x8BB8;&#x6700;&#x5927;&#x5E76;&#x884C;&#x5EA6;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;8&#x3002;</span>
+</code></pre>
+<p>  &#x5F53;&#x7136;&#x5F97;&#x662F;&#x5728;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x6BD4;&#x8F83;&#x7A7A;&#x95F2;&#x7684;&#x65F6;&#x5019;&#x624D;&#x6709;&#x4F18;&#x52BF;&#xFF0C;&#x5426;&#x5219;&#x6CA1;&#x8D44;&#x6E90;&#xFF0C;&#x5E76;&#x884C;&#x4E5F;&#x8D77;&#x4E0D;&#x6765;&#x3002;</p>
+</li>
+<li><p>&#x6570;&#x636E;&#x503E;&#x659C;&#x4F18;&#x5316;</p>
+<p>  &#x6570;&#x636E;&#x503E;&#x659C;&#x7684;&#x539F;&#x7406;&#x90FD;&#x77E5;&#x9053;&#xFF0C;&#x5C31;&#x662F;&#x67D0;&#x4E00;&#x4E2A;&#x6216;&#x51E0;&#x4E2A;key&#x5360;&#x636E;&#x4E86;&#x6574;&#x4E2A;&#x6570;&#x636E;&#x7684;90%&#xFF0C;&#x8FD9;&#x6837;&#x6574;&#x4E2A;&#x4EFB;&#x52A1;&#x7684;&#x6548;&#x7387;&#x90FD;&#x4F1A;&#x88AB;&#x8FD9;&#x4E2A;key&#x7684;&#x5904;&#x7406;&#x62D6;&#x6162;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x53EF;&#x80FD;&#x4F1A;&#x56E0;&#x4E3A;&#x76F8;&#x540C;&#x7684;key&#x4F1A;&#x805A;&#x5408;&#x5230;&#x4E00;&#x8D77;&#x9020;&#x6210;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x3002;</p>
+<p>  &#x5E38;&#x89C1;&#x7684;&#x505A;&#x6CD5;&#xFF0C;&#x901A;&#x8FC7;&#x53C2;&#x6570;&#x8C03;&#x4F18;&#xFF1A;</p>
+<pre class="language-"><code class="lang-sql">  <span class="token keyword">set</span> hive<span class="token punctuation">.</span>map<span class="token punctuation">.</span>aggr<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token keyword">set</span> hive<span class="token punctuation">.</span>groupby<span class="token punctuation">.</span>skewindata <span class="token operator">=</span> ture<span class="token punctuation">;</span>
+</code></pre>
+<p>  &#x5F53;&#x9009;&#x9879;&#x8BBE;&#x5B9A;&#x4E3A;true&#x65F6;&#xFF0C;&#x751F;&#x6210;&#x7684;&#x67E5;&#x8BE2;&#x8BA1;&#x5212;&#x6709;&#x4E24;&#x4E2A;MapReduce&#x4EFB;&#x52A1;&#x3002;</p>
+<p>  &#x5728;&#x7B2C;&#x4E00;&#x4E2A;MapReduce&#x4E2D;&#xFF0C;map&#x7684;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x96C6;&#x5408;&#x4F1A;&#x968F;&#x673A;&#x5206;&#x5E03;&#x5230;reduce&#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;reduce&#x505A;&#x90E8;&#x5206;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#xFF0C;&#x5E76;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x3002;</p>
+<p>  &#x8FD9;&#x6837;&#x5904;&#x7406;&#x7684;&#x7ED3;&#x679C;&#x662F;&#xFF0C;&#x76F8;&#x540C;&#x7684;Group By Key&#x6709;&#x53EF;&#x80FD;&#x5206;&#x53D1;&#x5230;&#x4E0D;&#x540C;&#x7684;reduce&#x4E2D;&#xFF0C;&#x4ECE;&#x800C;&#x8FBE;&#x5230;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x7684;&#x76EE;&#x7684;&#xFF1B;</p>
+<p>  &#x7B2C;&#x4E8C;&#x4E2A;MapReduce&#x4EFB;&#x52A1;&#x518D;&#x6839;&#x636E;&#x9884;&#x5904;&#x7406;&#x7684;&#x6570;&#x636E;&#x7ED3;&#x679C;&#x6309;&#x7167;Group By Key&#x5206;&#x5E03;&#x5230;reduce&#x4E2D;&#xFF08;&#x8FD9;&#x4E2A;&#x8FC7;&#x7A0B;&#x53EF;&#x4EE5;&#x4FDD;&#x8BC1;&#x76F8;&#x540C;&#x7684;Group By Key&#x5206;&#x5E03;&#x5230;&#x540C;&#x4E00;&#x4E2A;reduce&#x4E2D;&#xFF09;&#xFF0C;&#x6700;&#x540E;&#x5B8C;&#x6210;&#x6700;&#x7EC8;&#x7684;&#x805A;&#x5408;&#x64CD;&#x4F5C;&#x3002;</p>
+<p>  &#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x5904;&#x7406;&#x65B9;&#x6848;&#x5BF9;&#x4E8E;&#x6211;&#x4EEC;&#x6765;&#x8BF4;&#x662F;&#x4E2A;&#x9ED1;&#x76D2;&#xFF0C;&#x65E0;&#x6CD5;&#x628A;&#x63A7;&#x3002;</p>
+<p>  &#x901A;&#x5E38;&#x91C7;&#x7528;&#xFF1A;</p>
+<ol>
+<li><p>sample&#x91C7;&#x6837;&#xFF0C;&#x83B7;&#x53D6;&#x54EA;&#x4E9B;&#x96C6;&#x4E2D;&#x7684;key&#xFF1B;</p>
+</li>
+<li><p>&#x5C06;&#x96C6;&#x4E2D;&#x7684;key&#x6309;&#x7167;&#x4E00;&#x5B9A;&#x89C4;&#x5219;&#x6DFB;&#x52A0;&#x968F;&#x673A;&#x6570;&#xFF1B;</p>
+</li>
+<li><p>&#x8FDB;&#x884C;join&#xFF0C;&#x7531;&#x4E8E;&#x6253;&#x6563;&#x4E86;&#xFF0C;&#x6240;&#x4EE5;&#x6570;&#x636E;&#x503E;&#x659C;&#x907F;&#x514D;&#x4E86;&#xFF1B;</p>
+</li>
+<li><p>&#x5728;&#x5904;&#x7406;&#x7ED3;&#x679C;&#x4E2D;&#x5BF9;&#x4E4B;&#x524D;&#x7684;&#x6DFB;&#x52A0;&#x7684;&#x968F;&#x673A;&#x6570;&#x8FDB;&#x884C;&#x5207;&#x5206;&#xFF0C;&#x53D8;&#x6210;&#x539F;&#x59CB;&#x7684;&#x6570;&#x636E;&#x3002;</p>
+</li>
+</ol>
+</li>
+<li><p>Limit&#x9650;&#x5236;&#x8C03;&#x6574;&#x4F18;&#x5316;
+  &#x4E00;&#x822C;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;Limit&#x8BED;&#x53E5;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x6267;&#x884C;&#x6574;&#x4E2A;&#x67E5;&#x8BE2;&#x8BED;&#x53E5;&#xFF0C;&#x7136;&#x540E;&#x518D;&#x8FD4;&#x56DE;&#x90E8;&#x5206;&#x7ED3;&#x679C;&#x3002;</p>
+<p>  &#x6709;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x5C5E;&#x6027;&#x53EF;&#x4EE5;&#x5F00;&#x542F;&#xFF0C;&#x907F;&#x514D;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF1A;&#x5BF9;&#x6570;&#x636E;&#x6E90;&#x8FDB;&#x884C;&#x62BD;&#x6837;&#x3002;</p>
+<p>  hive.limit.optimize.enable=true -- &#x5F00;&#x542F;&#x5BF9;&#x6570;&#x636E;&#x6E90;&#x8FDB;&#x884C;&#x91C7;&#x6837;&#x7684;&#x529F;&#x80FD;</p>
+<p>  hive.limit.row.max.size -- &#x8BBE;&#x7F6E;&#x6700;&#x5C0F;&#x7684;&#x91C7;&#x6837;&#x5BB9;&#x91CF;</p>
+<p>  hive.limit.optimize.limit.file -- &#x8BBE;&#x7F6E;&#x6700;&#x5927;&#x7684;&#x91C7;&#x6837;&#x6837;&#x672C;&#x6570;</p>
+</li>
+</ul>
+<p>&#x7F3A;&#x70B9;&#xFF1A;&#x6709;&#x53EF;&#x80FD;&#x90E8;&#x5206;&#x6570;&#x636E;&#x6C38;&#x8FDC;&#x4E0D;&#x4F1A;&#x88AB;&#x5904;&#x7406;&#x5230;</p>
+<ul>
+<li><p>JOIN&#x4F18;&#x5316;</p>
+<ol>
+<li><p>&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x8FDE;&#x63A5;&#x952E;</p>
+<p>&#x5F53;&#x5BF9;3&#x4E2A;&#x6216;&#x8005;&#x66F4;&#x591A;&#x4E2A;&#x8868;&#x8FDB;&#x884C;join&#x8FDE;&#x63A5;&#x65F6;&#xFF0C;&#x5982;&#x679C;&#x6BCF;&#x4E2A;on&#x5B50;&#x53E5;&#x90FD;&#x4F7F;&#x7528;&#x76F8;&#x540C;&#x7684;&#x8FDE;&#x63A5;&#x952E;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x4E48;&#x53EA;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;MapReduce job&#x3002;</p>
+</li>
+<li><p>&#x5C3D;&#x91CF;&#x5C3D;&#x65E9;&#x5730;&#x8FC7;&#x6EE4;&#x6570;&#x636E;</p>
+<p>&#x51CF;&#x5C11;&#x6BCF;&#x4E2A;&#x9636;&#x6BB5;&#x7684;&#x6570;&#x636E;&#x91CF;&#xFF0C;&#x5BF9;&#x4E8E;&#x5206;&#x533A;&#x8868;&#x8981;&#x52A0;&#x5206;&#x533A;&#xFF0C;&#x540C;&#x65F6;&#x53EA;&#x9009;&#x62E9;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5230;&#x7684;&#x5B57;&#x6BB5;&#x3002;</p>
+</li>
+<li><p>&#x5C3D;&#x91CF;&#x539F;&#x5B50;&#x5316;&#x64CD;&#x4F5C;</p>
+<p>&#x5C3D;&#x91CF;&#x907F;&#x514D;&#x4E00;&#x4E2A;SQL&#x5305;&#x542B;&#x590D;&#x6742;&#x903B;&#x8F91;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E2D;&#x95F4;&#x8868;&#x6765;&#x5B8C;&#x6210;&#x590D;&#x6742;&#x7684;&#x903B;&#x8F91;&#x3002;</p>
+</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>&#x4EE3;&#x7801;&#x4F18;&#x5316;&#x539F;&#x5219;&#xFF1A;</p>
+<ul>
+<li>&#x7406;&#x900F;&#x9700;&#x6C42;&#x539F;&#x5219;&#xFF0C;&#x8FD9;&#x662F;&#x4F18;&#x5316;&#x7684;&#x6839;&#x672C;&#xFF1B;</li>
+<li>&#x628A;&#x63E1;&#x6570;&#x636E;&#x5168;&#x94FE;&#x8DEF;&#x539F;&#x5219;&#xFF0C;&#x8FD9;&#x662F;&#x4F18;&#x5316;&#x7684;&#x8109;&#x7EDC;&#xFF1B;</li>
+<li>&#x575A;&#x6301;&#x4EE3;&#x7801;&#x7684;&#x7B80;&#x6D01;&#x539F;&#x5219;&#xFF0C;&#x8FD9;&#x8BA9;&#x4F18;&#x5316;&#x66F4;&#x52A0;&#x7B80;&#x5355;&#xFF1B;</li>
+<li>&#x6CA1;&#x6709;&#x74F6;&#x9888;&#x65F6;&#x8C08;&#x8BBA;&#x4F18;&#x5316;&#xFF0C;&#x8FD9;&#x662F;&#x81EA;&#x5BFB;&#x70E6;&#x607C;&#x3002;</li>
+</ul>
+</li>
+</ul>
+<footer class="page-footer-ex"> <span class="page-footer-ex-copyright"> &#x4F7F;&#x7528;<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">&#x77E5;&#x8BC6;&#x5171;&#x4EAB; &#x7F72;&#x540D;-&#x76F8;&#x540C;&#x65B9;&#x5F0F;&#x5171;&#x4EAB; 4.0&#x534F;&#x8BAE;</a>&#x53D1;&#x5E03; </span> &#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0; <span class="page-footer-ex-footer-update"> <i>updated</i> 2022-06-22 14:56:54 </span> </footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                
+                <a href="Hive常见问题集.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Hive常见问题集">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Hive参数与性能调优","level":"1.3.1","depth":2,"next":{"title":"Hive常见问题集","level":"1.3.2","depth":2,"path":"Hive/Hive常见问题集.md","ref":"Hive/Hive常见问题集.md","articles":[]},"previous":{"title":"Hive","level":"1.3","depth":1,"ref":"","articles":[{"title":"Hive参数与性能调优","level":"1.3.1","depth":2,"path":"Hive/Hive参数与性能调优.md","ref":"Hive/Hive参数与性能调优.md","articles":[]},{"title":"Hive常见问题集","level":"1.3.2","depth":2,"path":"Hive/Hive常见问题集.md","ref":"Hive/Hive常见问题集.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["expandable-chapters","copy-code-button","page-footer-ex","anchor-navigation-ex","expandable-chapters-small","prism","-highlight","-lunr","-search","theme-comscore","search-pro","splitter"],"ignores":["_book","node_modules"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"prism":{"css":["prismjs/themes/prism-solarizedlight.css"],"lang":{"flow":"typescript"}},"page-footer-ex":{"copyright":"使用[知识共享 署名-相同方式共享 4.0协议](https://creativecommons.org/licenses/by-sa/4.0/)发布","markdown":true,"update_format":"YYYY-MM-DD HH:mm:ss","update_label":"<i>updated</i>"},"splitter":{},"search-pro":{},"fontsettings":{"theme":"white","family":"sans","size":2},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":true},"theme-comscore":{},"expandable-chapters-small":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Summary","links":{"sidebar":{"Home":"https://zyxzyxu.github.io/experience/"}},"gitbook":"*"},"file":{"path":"Hive/Hive参数与性能调优.md","mtime":"2022-06-22T14:56:54.503Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-06-22T14:57:46.800Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-copy-code-button/toggle.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-theme-comscore/test.js"></script>
+        
+    
+
+    </body>
+</html>
+
