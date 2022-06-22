@@ -1,8 +1,12 @@
 # HBase进阶
 - Master架构
+
 	Master
+
 	主要进程，具体实现类为HMaster，通常部署在namenode上
+
 	通过zookeeper管理分布在各个服务器上的 regionServer
+	
 	Master服务端
 	1. 负载均衡器
 		通过读取meta表了解Regin的分配，通过连接zk了解RS的启动情况。5分钟调控一次分配平衡
